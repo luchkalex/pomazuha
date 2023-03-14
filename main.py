@@ -1,25 +1,11 @@
-import pygame, sys, os
+import pygame
+from utils import *
 pygame.init()
+     
 
-
-WINDOW_SCALE = (1280, 720)
-TEXT_COL = (255, 255, 255)
-
-font = pygame.font.SysFont("arialblack", 40)
-
-SCREEN = pygame.display.set_mode(WINDOW_SCALE)
-pygame.display.set_caption("pomazuha")
-
-BG = pygame.image.load("assets/menu_bg/menu1.jpg")
-BG = pygame.transform.scale(BG, WINDOW_SCALE)
-
-pygame.mixer.music.load("sounds/music/main_menu.mp3")
-pygame.mixer.music.play()
-
-
-def draw_text(text, font, text_col, x, y):
-     img = font.render(text, True, text_col)
-     SCREEN.blit(img, (x, y))
+menu = Menu()
+menu.append_option('Start', lambda: print('huy'))
+menu.append_option('Quit', quit)
 
 
 run = True
@@ -27,18 +13,22 @@ while run:
 		for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					run = False
+				elif event.type == pygame.KEYDOWN:
+					if event.key == pygame.K_w or event.key == pygame.K_UP:
+						menu.switch(-1)
+					elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
+						menu.switch(1)
+					elif event.key == pygame.K_SPACE:
+						menu.select()
+
 		
 
 		SCREEN.blit(BG, (0, 0))
-		draw_text("Roma HUY", font, TEXT_COL, 50, 50)
+		draw_text("Roma HUY", menu_font, white, 50, 50)
+
+		menu.draw(SCREEN, 100, 200, 75)
 
 		
-		
-
 		pygame.display.update()
-	
-
-
-		
 		
 pygame.quit()
