@@ -3,6 +3,9 @@ import pygame, sys
 
 WIDTH, HEIGHT = 1920, 1080
 TEXT_COL = (255, 255, 255)
+resume_btn = pygame.image.load("assets/menu_bg/start_btn.png").convert_alpha()
+exit_btn = pygame.image.load("assets/menu_bg/exit_btn.png").convert_alpha()
+
 
 pygame.init()
 font = pygame.font.SysFont("arialblack", 40)
@@ -18,6 +21,7 @@ pygame.mixer.music.play()
 def draw_text(text, font, text_col, x, y):
      img = font.render(text, True, text_col)
      SCREEN.blit(img, (x, y))
+
 
 run = True
 while run:
