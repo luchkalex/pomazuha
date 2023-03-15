@@ -1,28 +1,45 @@
-import pygame
+import pygame, os
 pygame.init()
+name = os.getlogin()
 
 #COLORS
 black = (0, 0, 0)
 white = (255, 255, 255)
 blue = (0, 102, 204)
+light_blue = (102, 255, 255)
+light_green = (102, 255, 102)
 
 #SETTINGS
 WINDOW_SCALE = (1280, 720)
 SCREEN = pygame.display.set_mode(WINDOW_SCALE)
-pygame.display.set_caption("pomazuha")
+pygame.display.set_caption(f"{name}, а ты хуй)")
+icon = pygame.image.load("assets/png_icons/beer.png")
+pygame.display.set_icon(icon)
 
 BG = pygame.image.load("assets/menu_bg/menu1.jpg")
 BG = pygame.transform.scale(BG, WINDOW_SCALE)
 
+s = pygame.Surface((350, 720))
+s.set_alpha(128)
+s.fill(light_blue)
+
+
 pygame.mixer.music.load("sounds/music/main_menu.mp3")
 pygame.mixer.music.play()
 
-menu_font = pygame.font.SysFont("arialblack", 40)
+#FONTS
+title_font = pygame.font.Font("assets/fonts/nunito_bold.ttf", 60)
+title_font.bold
+menu_font = pygame.font.Font("assets/fonts/nunito_italic.ttf", 40)
+menu_font.bold
 
 
 def draw_text(text, font, text_col, x, y):
     img = font.render(text, True, text_col)
     SCREEN.blit(img, (x, y))
+
+
+
     
 
 class Menu:
@@ -53,3 +70,15 @@ class Menu:
             if i == self._curent_option_index:
                 pygame.draw.rect(surf, (0, 100, 0), option_rect)
             surf.blit(option, option_rect)
+
+
+menu = Menu()
+menu.append_option('Start', lambda: print('huy'))
+menu.append_option('Quit', quit)
+
+def draw_menu():
+    SCREEN.blit(BG, (0, 0))
+    SCREEN.blit(s, (0, 0))
+    draw_text("ROMA HUY", title_font, white, 50, 50)
+    
+    menu.draw(SCREEN, 50, 200, 75)
