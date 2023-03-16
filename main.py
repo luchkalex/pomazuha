@@ -1,5 +1,6 @@
 import pygame
 from utils import *
+from screens.menu_screen import *
 from screens.settings_screen import *
 pygame.init()
 
