@@ -19,6 +19,8 @@ settings_screen = SettingsScreen(
     ['Low', 'Medium', 'High']], 
     [0, 0, 1])
 
+game_screen = 
+
 current_screen: Screen = menu
 
 while True:
@@ -28,7 +30,7 @@ while True:
             pygame.quit()
             quit()
         elif action == 'play':
-            print('Starting the game...')
+            current_screen = 
         elif action == 'settings':
             current_screen = settings_screen
         
