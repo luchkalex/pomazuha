@@ -5,7 +5,6 @@ pygame.init()
 
 
 current_screen = menu
-run = True
 while True:
     for event in pygame.event.get():
         action = current_screen.handle_event(event)
