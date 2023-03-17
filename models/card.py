@@ -10,7 +10,7 @@
 #             onShow, 
 #             onAttack
 #             ):
-        
+
 #         self._title = title
 #         self._image = image
 #         self._hp = hp
@@ -28,6 +28,7 @@
 
 
 import pygame
+
 
 class Card(pygame.sprite.Sprite):
     def __init__(self, name, cost, attack, health, image, desc):
@@ -53,5 +54,3 @@ class Card(pygame.sprite.Sprite):
         surface.blit(text, (x + self.rect.width - 25, y + 5))
         text = font.render(str(self.health), True, (255, 255, 255))
         surface.blit(text, (x + self.rect.width - 25, y + self.rect.height - 25))
-
-    

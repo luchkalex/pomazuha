@@ -1,6 +1,6 @@
 import pygame
-from utils import *
 from screens.screen import *
+
 
 class SettingsScreen(Screen):
     def __init__(self, screen_size, font, font_size, font_color, x, y, settings, options, selected_option):
@@ -13,6 +13,8 @@ class SettingsScreen(Screen):
         self.options = options
         self.selected_option = selected_option
         self.selected_menu = 0
+        self.background = pygame.image.load("assets/menu_bg/menu2.jpg")
+        self.background = pygame.transform.scale(self.background, screen_size)
 
     def handle_event(self, event):
         if event.type == pygame.QUIT:
@@ -64,7 +66,7 @@ class SettingsScreen(Screen):
                         self.selected_menu = i
 
     def draw(self):
-        self.screen.blit(BG, (0, 0))
+        self.screen.blit(self.background, (0, 0))
 
         for i in range(len(self.settings)):
             text = self.font.render(self.settings[i], True, self.font_color)
@@ -80,4 +82,5 @@ class SettingsScreen(Screen):
                 option_rect.x = self.x + text_rect.width + 20 + j * 100
                 option_rect.y = self.y + i * 50
             if i == self.selected_menu:
-                pygame.draw.rect(self.screen, self.font_color, (text_rect.x - 10, text_rect.y - 5, text_rect.width + 20, text_rect.height + 10), 2)
+                pygame.draw.rect(self.screen, self.font_color,
+                                 (text_rect.x - 10, text_rect.y - 5, text_rect.width + 20, text_rect.height + 10), 2)
